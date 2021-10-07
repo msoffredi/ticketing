@@ -12,12 +12,22 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
+
             - name: Build docker image
               run: cd auth && docker build -t msoffredi/auth .
+
             - name: Login to docker
               run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
               env:
                   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
                   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
             - name: Push image to DockerHub
               run: docker push msoffredi/auth
+
+            # - uses: <something about aws or aws-cli with some credentials as secrets>
+            # - name: Adding EKS cluster to kubectl config
+            #   run: <some commands to achieve the above>
+
+            # - name: Restarting auth deployment
+            #   run: kubectl rollout restart deployment auth-depl

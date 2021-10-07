@@ -1,0 +1,21 @@
+name: deploy-manifests
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'infra/**'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            # - uses: <something about aws or aws-cli with some credentials as secrets>
+            # - name: Adding EKS cluster to kubectl config
+            #   run: <some commands to achieve the above>
+
+            # - name: Applying manifests to the kubernetes cluster
+            #   run: kubectl apply -f infra/k8s
