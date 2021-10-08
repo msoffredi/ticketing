@@ -18,4 +18,4 @@ jobs:
             #   run: <some commands to achieve the above>
 
             # - name: Applying manifests to the kubernetes cluster
-            #   run: kubectl apply -f infra/k8s
+            #   run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod

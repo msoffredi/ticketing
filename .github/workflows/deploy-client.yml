@@ -1,0 +1,33 @@
+name: deploy-client
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'client/**'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Build docker image
+              run: cd client && docker build -t msoffredi/client .
+
+            - name: Login to docker
+              run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+              env:
+                  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+                  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+            - name: Push image to DockerHub
+              run: docker push msoffredi/client
+
+            # - uses: <something about aws or aws-cli with some credentials as secrets>
+            # - name: Adding EKS cluster to kubectl config
+            #   run: <some commands to achieve the above>
+
+            # - name: Restarting client deployment
+            #   run: kubectl rollout restart deployment client-depl
