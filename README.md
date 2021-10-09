@@ -37,4 +37,11 @@ Keep in mind that in order to set this up in AWS you need to successfully comple
 
 Follow [this instructions](https://docs.aws.amazon.com/eks/latest/userguide/getting-started-console.html) to create a cluster with 3 nodes in your prefered region and get kubectl configured to talk to your new cluster.
 
-You would not things are ready to the next steps if you do `kubectl get nodes` and you can see 3 nodes listed and ready.
+You would not things are ready to the next steps if you do `kubectl get nodes` and you can see 3 nodes listed and ready. The you can do:
+
+#### Set DockerHub and AWS secrets in your GitHub repository
+
+#### Create secrets in your new EKS cluster
+
+-   jwt-secret > JWT_KEY=<some_key_here>
+-   stripe-secret > STRIPE_KEY=<your_stripe_private_key>
