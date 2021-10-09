@@ -4,7 +4,7 @@ const buildClient = ({ req }) => {
     if (typeof window === 'undefined') {
         // Server side
         return axios.create({
-            baseURL: 'https://ticketing.soffredi.org',
+            baseURL: 'http://ticketing.soffredi.org',
             headers: req.headers,
         });
     } else {
