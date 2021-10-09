@@ -4,8 +4,7 @@ const buildClient = ({ req }) => {
     if (typeof window === 'undefined') {
         // Server side
         return axios.create({
-            baseURL:
-                'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            baseURL: 'https://ticketing.soffredi.org',
             headers: req.headers,
         });
     } else {
