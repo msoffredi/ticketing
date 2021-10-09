@@ -25,9 +25,15 @@ jobs:
             - name: Push image to DockerHub
               run: docker push msoffredi/client
 
-            # - uses: <something about aws or aws-cli with some credentials as secrets>
-            # - name: Adding EKS cluster to kubectl config
-            #   run: <some commands to achieve the above>
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: us-east-1
 
-            # - name: Restarting client deployment
-            #   run: kubectl rollout restart deployment client-depl
+            - name: Adding kubernetes cluster as new context
+              run: aws eks update-kubeconfig --region us-east-1 --name ticketing
+
+            - name: Restarting client deployment
+              run: kubectl rollout restart deployment client-depl
