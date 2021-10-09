@@ -55,3 +55,5 @@ Follow the instructions from the Ingress-Nginx [installation page](https://kuber
 In order to deploy all your manifests for the first time you need to promote a change on any of the yaml files in your `infra/k8s` directory (adding a comment should be enough), and complete a normal pull request merged to `main`.
 
 You can validate things worked by looking at GitHub Actions logs, or by running `kybectl get pods` and see multiple podes created (or being created).
+
+#### Connecting a domain with your Load Balancer
